@@ -12,10 +12,22 @@ class Index extends Component
 
     public $paginate = 10;
 
+    public $search;
+
+    protected $UpdatesQueryString = [
+        ['search' => ['except' => '']], //except berfungsi agar keyword search tidak ditulis di url
+    ];
+
+    public function mount(){
+        $this->search = request()->query('search', $this->search);
+    }
+
     public function render()
     {
         return view('livewire.product.index',[
-            'products' => Product::latest()->paginate($this->paginate),
+            'products' => $this->search === null ?
+            Product::latest()->paginate($this->paginate) :
+            Product::latest()->where('title', 'like', '%' . $this->search .'%')->paginate($this->paginate)
         ]);
     }
 }
