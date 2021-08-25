@@ -6,6 +6,7 @@
     <div class="row justify-content-center">
         <div class="col-md">
             <div class="card">
+
                 <div class="card-header">
                     Products
                     <button wire:click="$toggle('formVisible')" class="btn btn-primary btn-sm">Create</button>
@@ -13,6 +14,13 @@
 
 
                 <div class="card-body">
+                     {{-- card message success --}}
+                @if (session()->has('message'))
+                    <div class="alert alert-success">
+                        {{ session('message') }}
+                    </div>
+                @endif
+            
                     <div class="row">
                         <div class="col">
                             <select wire:model="paginate" name="" id="" class="form-control form-control-sm w-auto">
