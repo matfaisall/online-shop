@@ -44,6 +44,16 @@
                                 <div class="form-group">
                                     <label for="">Image</label>
                                     <input wire:model="image" type="file" class="form-control-file" id="image">
+                                    @error('image')
+                                        <span class="invalid-feedback">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+
+                                    {{-- melakukan review gambar yang ingin kita upload --}}
+                                    @if ($image)
+                                        <img src="{{ $image->temporaryUrl() }}" alt="" height="200">  
+                                    @endif
                                 </div>
                             </div>
                         </div>
