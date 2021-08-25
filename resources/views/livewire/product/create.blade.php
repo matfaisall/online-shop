@@ -6,10 +6,21 @@
                     <div class="form-group">
                         <div class="row">
                             <div class="col">
-                                <input wire:model="title" type="text" class="form-control" placeholder="Title">
+                                <input wire:model="title" type="text" class="form-control @error('title') is-invalid @enderror" placeholder="Title">
+                                @error('title')
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
+
                             <div class="col">
-                                <input wire:model="price" type="text" class="form-control" placeholder="Price">
+                                <input wire:model="price" type="text" class="form-control @error('title') is-invalid @enderror" placeholder="Price">
+                                @error('price')
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
                     </div>
@@ -17,7 +28,12 @@
                     <div class="form-group">
                         <div class="row">
                             <div class="col">
-                                <input wire:model="description" type="text" class="form-control" placeholder="Description">
+                                <input wire:model="description" type="text" class="form-control @error('description') is-invalid @enderror" placeholder="Description">
+                                @error('description')
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
                     </div>

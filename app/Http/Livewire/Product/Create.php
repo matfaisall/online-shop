@@ -18,6 +18,13 @@ class Create extends Component
     }
 
     public function store(){
+
+        $this->validate([
+            'title' => 'required|min:3',
+            'price' => 'required|numeric',
+            'description' => 'required|max:180'
+        ]);
+
         $product = [
             'title' => $this->title,
             'price' => $this->price,
