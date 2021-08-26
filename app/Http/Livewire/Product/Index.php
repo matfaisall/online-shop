@@ -13,6 +13,7 @@ class Index extends Component
     public $paginate = 10;
     public $search;
     public $formVisible;
+    public $formUpdate = false;
 
     protected $UpdatesQueryString = [
         ['search' => ['except' => '']], //except berfungsi agar keyword search tidak ditulis di url
@@ -21,6 +22,7 @@ class Index extends Component
     protected $listeners = [
         'formClose' => 'formCloseHandler',
         'productStored' => 'productStoredHandler',
+        'productUpdated' => 'productUpdatedHandler',
     ];
 
     public function mount(){
@@ -43,5 +45,17 @@ class Index extends Component
     public function productStoredHandler(){
         $this->formVisible = false;
         session()->flash('message', 'Your product was stored');
+    }
+
+    public function editProduct($productId){
+        $this->formUpdate = true;
+        $this->formVisible = true;
+        $product = Product::find($productId);
+        $this->emit('editProduct', $product);
+    }
+
+    public function productUpdatedHandler(){
+        $this->formVisible = false;
+        session()->flash('message', 'Your product was updated');
     }
 }
