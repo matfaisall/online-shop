@@ -59,7 +59,7 @@
                                     <th>Rp {{ number_format($product->price,2,",",".") }}</th>
                                     <th>
                                         <button wire:click="editProduct({{ $product->id }})" class="btn btn-warning btn-sm">Edit</button>
-                                        <button class="btn btn-danger btn-sm">Delete</button>
+                                        <button wire:click="deleteProduct({{ $product->id }})" class="btn btn-danger btn-sm">Delete</button>
                                     </th>
                                 </tr>
                             @endforeach

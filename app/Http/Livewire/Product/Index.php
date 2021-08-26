@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Product;
 
 use App\Product;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -57,5 +58,18 @@ class Index extends Component
     public function productUpdatedHandler(){
         $this->formVisible = false;
         session()->flash('message', 'Your product was updated');
+    }
+
+    // delete product
+    public function deleteProduct($productId) {
+        $product = Product::find($productId);
+
+        // melakukan pengecekan apabila data memiliki image -> dihapus
+        if ($product->image) {
+            Storage::disk('public')->delete($product->image);
+        }
+
+        $product->delete();
+        session()->flash('message', 'Product was deleted!');
     }
 }
