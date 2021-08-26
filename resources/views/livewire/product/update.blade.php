@@ -2,7 +2,7 @@
     <div class="col-md-8">
         <div class="card">
             <div class="card-body">
-                <form wire:submit.prevent="update" method="POST" action="" enctype="multipart/form-data" >
+                <form wire:submit.prevent="update" method="POST" enctype="multipart/form-data" >
                     <div class="form-group">
                         <div class="row">
                             <div class="col">

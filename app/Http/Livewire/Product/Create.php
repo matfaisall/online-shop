@@ -42,14 +42,12 @@ class Create extends Component
             $this->image->storeAs('public', $imageName, 'local');
         }
 
-        $product = [
+        Product::create([
             'title' => $this->title,
             'price' => $this->price,
             'description' => $this->description,
             'image' => $imageName
-        ];
-
-        Product::create($product);
+        ]);
 
         // untuk menyembunyikan form ketika data berhasil di inputkan
         $this->emit('productStored');
